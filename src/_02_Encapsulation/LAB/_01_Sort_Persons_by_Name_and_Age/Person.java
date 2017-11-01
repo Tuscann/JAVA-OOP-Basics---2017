@@ -38,7 +38,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.getFirstName() + " " + this.getLastName() + " is a " + this.getAge() + " years old.";
+        return this.getFirstName() + " " + this.getLastName() + " is " + this.getAge() + " years old.";
     }
 
 
