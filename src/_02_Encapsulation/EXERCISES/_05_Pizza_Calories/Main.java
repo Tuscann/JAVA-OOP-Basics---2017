@@ -3,40 +3,61 @@ package _02_Encapsulation.EXERCISES._05_Pizza_Calories;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
-       try{
-           String[] pizzaArgs = scan.nextLine().split("\\s");
+        String command = in.nextLine();
+        while (!"END".equals(command)) {
+            try {
+                if (command.startsWith("Dough")) {
+                    String[] doughArgs = command.split("\\s+");
+                    String flourType = doughArgs[1];
+                    String bakingTechnique = doughArgs[2];
+                    double weight = Double.parseDouble(doughArgs[3]);
 
-           String pizzaName = pizzaArgs[1];
-           Integer numbersOfToppings = Integer.parseInt(pizzaArgs[2]);
+                    Dough dough = new Dough(flourType, bakingTechnique, weight);
+                    System.out.printf("%.2f%n", dough.getCalories());
+                } else if (command.startsWith("Topping")) {
+                    String[] toppingArgs = command.split("\\s+");
+                    String type = toppingArgs[1];
+                    double weight = Double.parseDouble(toppingArgs[2]);
 
-           Pizza pizza = new Pizza(pizzaName, numbersOfToppings);
+                    Topping topping = new Topping(type, weight);
+                    System.out.printf("%.2f%n", topping.getCalories());
+                } else if (command.startsWith("Pizza")) {
+                    String[] pizzaArgs = command.split("\\s+");
+                    String name = pizzaArgs[1];
+                    int numberOfToppings = Integer.parseInt(pizzaArgs[2]);
 
+                    Pizza pizza = new Pizza(name, numberOfToppings);
 
-           String[] doughTokens = scan.nextLine().split("\\s");
+                    String[] doughArgs = in.nextLine().split("\\s+");
+                    String flourType = doughArgs[1];
+                    String bakingTechnique = doughArgs[2];
+                    double doughWeight = Double.parseDouble(doughArgs[3]);
 
-           String flourType = doughTokens[1];
-           String bakingTechnique = doughTokens[2];
-           Double weightInGrams = Double.parseDouble(doughTokens[3]);
+                    Dough dough = new Dough(flourType, bakingTechnique, doughWeight);
+                    pizza.setDough(dough);
 
-           Dough dough = new Dough(flourType, bakingTechnique, weightInGrams);
+                    for (int i = 0; i < numberOfToppings; i++) {
+                        String[] toppingArgs = in.nextLine().split("\\s+");
+                        String type = toppingArgs[1];
+                        double toppingWeight = Double.parseDouble(toppingArgs[2]);
 
-           for (int i = 0; i < numbersOfToppings; i++) {
-               String[] toppingTokens = scan.nextLine().split("\\s");
+                        Topping topping = new Topping(type, toppingWeight);
 
-               String toppingType = toppingTokens[1];
-               Double toppingWeightInGrams = Double.parseDouble(toppingTokens[2]);
+                        pizza.addTopping(topping);
+                    }
 
-               Topping topping = new Topping(toppingType, toppingWeightInGrams);
+                    System.out.println(pizza);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return;
+            }
 
-               pizza.addTopping(topping);
-           }
-           System.out.println(pizza);
-       }
-       catch (Exception e){
-           System.out.println(e.getMessage());
-       }
+            command = in.nextLine();
+        }
     }
 }

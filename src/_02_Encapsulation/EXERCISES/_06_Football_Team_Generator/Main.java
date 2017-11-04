@@ -20,6 +20,7 @@ public class Main {
             String commandType = commandArgs[0];
 
             try {
+
                 if (commandType.equals("Team")) {
                     String teamName = commandArgs[1];
                     Team team = new Team(teamName);
