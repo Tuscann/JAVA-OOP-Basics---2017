@@ -1,26 +1,21 @@
 package _03_Inheritance.LAB._05_Random_Array_List;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
-//
-     RandomArrayList<Object> rlis = new RandomArrayList<>();
-        rlis.add("nikola");
-        rlis.add("plamen");
-        rlis.add("petq");
-        rlis.add("ivan");
-        rlis.add("nikoga");
+        RandomArrayList ral = new RandomArrayList();
 
-        // System.out.printf();
+//        ral.add(1);
+//        ral.add(2);
+//        ral.add("kamen");
+//        ral.add("pesho");
+//        ral.add(new ArrayList<>());
+//        ral.add(-1);
 
-//        for (Object rli : rlis) {
-//            System.out.println(rli);
-//        }
-
-
+        System.out.println(ral.getRandomElement());
+        System.out.println(ral.getRandomElement());
+        System.out.println(ral.getRandomElement());
+        System.out.println(ral.getRandomElement());
     }
 }
